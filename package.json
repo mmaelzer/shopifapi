@@ -1,0 +1,26 @@
+{
+  "name": "shopifapi",
+  "version": "0.1.0",
+  "description": "a thin wrapper for the shopify api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmaelzer/shopifapi"
+  },
+  "keywords": [
+    "shopify"
+  ],
+  "author": "Mike Maelzer <mmaelzer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "burst-queue": "~0.1.2",
+    "async": "~0.1.22",
+    "request": "~2.12.0"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.4.0"
+  }
+}
