@@ -132,4 +132,4 @@ class Shopifapi
     queue: ->
         _queue.enqueued()
 
-module.exports = Shopify
+module.exports = Shopifapi

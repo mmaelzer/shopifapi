@@ -1,1 +1,1 @@
-module.exports = require('lib/shopifapi');
+module.exports = require('./lib/shopifapi');
