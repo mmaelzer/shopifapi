@@ -11,6 +11,7 @@ class Shopifapi
         base64: ''
         
     _url = ''
+    _log = null
     _queue = null
 
     _buildOptions = (url, method, data) ->
@@ -31,7 +32,7 @@ class Shopifapi
         _auth.base64 = "Basic #{(new Buffer([_auth.username, _auth.password].join(':'))).toString('base64')}"
         _url = options.url
         verbose = if options.verbose? then options.verbose else false
-        log = new Log verbose, options.logger
+        _log = new Log verbose, options.logger
         _queue = new Queue 5*60*1000, 250
 
     getBaseObj: (obj, args, callback) ->
@@ -51,11 +52,11 @@ class Shopifapi
                 fetch = "#{_url}/admin/#{obj}.json?limit=250&page=#{task.page}#{argswa}"
                 options = _buildOptions(fetch, 'GET')
                 _queue.add(-> 
-                    log.may fetch
+                    _log.may fetch
                     request = req options, (err, response, result) ->
-                        log.may(err) if err?
+                        _log.may(err) if err?
                         if response.statusCode is 500 
-                            log.may "ERROR 500. Retrying..."
+                            _log.may "ERROR 500. Retrying..."
                             @retry 0
                         else
                             objects = objects.concat(result[obj])
@@ -71,7 +72,7 @@ class Shopifapi
                 q.push { page: currPage }
 
         getData = =>
-            log.may countUrl
+            _log.may countUrl
 
             options = 
                 url: countUrl
@@ -80,7 +81,7 @@ class Shopifapi
                 headers:
                     "Authorization": _auth.base64
 
-            log.may options
+            _log.may options
             req options, countComplete
 
         _queue.add getData
@@ -91,10 +92,10 @@ class Shopifapi
        
         options = _buildOptions fetch, 'GET'
         _queue.add(->    
-            log.may fetch
+            _log.may fetch
             request = req options, (err, response, result) ->
                 if response.statusCode is 500 
-                  log.may "ERROR 500. Retrying..."
+                  _log.may "ERROR 500. Retrying..."
                   @retry 0
                 else
                   callback(result[subobj]) if callback?
@@ -106,12 +107,12 @@ class Shopifapi
         options = _buildOptions(put, 'PUT', data)
 
         _queue.add(->          
-            log.may "PUT #{put}"
-            log.may data
+            _log.may "PUT #{put}"
+            _log.may data
 
             request = req options, (err, response, result) ->
-                if err? then log.may err
-                if result? then log.may(result)
+                if err? then _log.may err
+                if result? then _log.may(result)
                 callback(if result? then result[obj] else null) if callback?
             )
 
@@ -120,12 +121,12 @@ class Shopifapi
         options = _buildOptions(post, 'POST', data)
         
         _queue.add(->
-            log.may "POST #{post}"
-            log.may data
+            _log.may "POST #{post}"
+            _log.may data
 
             request = req options, (err, response, result) -> 
-                if err? then log.may err           
-                if result? then log.may(result)
+                if err? then _log.may err           
+                if result? then _log.may(result)
                 callback(if result? then result[obj] else null) if callback?
             )
 
