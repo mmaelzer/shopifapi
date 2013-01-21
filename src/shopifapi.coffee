@@ -1,7 +1,7 @@
 Queue = require 'burst-queue'
 async = require 'async'
 req = require 'request'
-log = require './log'
+Log = require './log'
 
 class Shopifapi
 
@@ -32,7 +32,7 @@ class Shopifapi
         _url = options.url
         verbose = if options.verbose? then options.verbose else false
         log = new Log verbose, options.logger
-        _queue = Queue.createQueue 5*60*1000, 250
+        _queue = new Queue 5*60*1000, 250
 
     getBaseObj: (obj, args, callback) ->
         argswq = ''
