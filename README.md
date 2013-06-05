@@ -57,7 +57,7 @@ Methods
 Used for getting all objects with the given arguments. If `null` is passed for the `args` parameter, all instances of the specified object type will be returned.  
 ```javascript
 shopifapi.getBaseObj('custom_collections', null, function(collections) {
-	console.log('Here's a list of all custom_collections!');
+	console.log("Here's a list of all custom_collections!");
 	console.log(collections);
 });
 shopifapi.getBaseObj('products', 'custom_collection=54321', function(products) {
