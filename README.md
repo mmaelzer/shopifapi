@@ -40,8 +40,8 @@ Options
 -------
 **auth**  
 The `auth` object takes two items:  
-* key: A shopify dev key  
-* pwd: A shopify dev password  
+* username: A shopify dev key  
+* password: A shopify dev password  
 
 **url**  
 This is the `url` of the shopify store to connect to.
