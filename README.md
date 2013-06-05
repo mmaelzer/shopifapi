@@ -18,8 +18,8 @@ Usage
 var Shopifapi = require('shopifapi');
 var shopify = new Shopifapi({
     auth: {
-        key: 'somereallylongauthkey',
-        pwd: 'somereallylongpassword'
+        username: 'somereallylongauthkey',
+        password: 'somereallylongpassword'
     },
     url: 'https://mywebsite.myshopify.com'
 });
