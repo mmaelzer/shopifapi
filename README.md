@@ -70,7 +70,7 @@ shopifapi.getBaseObj('products', 'custom_collection=54321', function(products) {
 Used for getting subobjects of a base object. For example, variants of products are subobjects as are provinces of countries. `id` is the id of the base object.  
 ```javascript
 shopifapi.getSubObj('products', 'variants', 12345, function(variants) {
-	console.log('Here's all the variants for product 12345!');
+	console.log("Here's all the variants for product 12345!");
 	console.log(variants);
 });
 
