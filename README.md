@@ -61,7 +61,7 @@ shopifapi.getBaseObj('custom_collections', null, function(collections) {
 	console.log(collections);
 });
 shopifapi.getBaseObj('products', 'custom_collection=54321', function(products) {
-	console.log('Here's all the products from collection 54321!');
+	console.log("Here's all the products from collection 54321!");
 	console.log(products);
 });
 ```  
