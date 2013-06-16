@@ -65,6 +65,15 @@ shopifapi.getBaseObj('products', 'custom_collection=54321', function(products) {
 	console.log(products);
 });
 ```  
+
+**getBaseObjById(objectName, id, callback)**  
+Used for getting an object with an id.  
+```javascript
+shopifapi.getBaseObjById('products', 12345, function(product) {
+  console.log("Here's product 12345!");
+  console.log(product);
+});
+```  
   
 **getSubObj(objectName, subObjectName, id, callback)**  
 Used for getting subobjects of a base object. For example, variants of products are subobjects as are provinces of countries. `id` is the id of the base object.  
