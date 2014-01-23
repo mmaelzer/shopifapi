@@ -9,7 +9,7 @@ class Shopifapi
     username: ''
     password: ''
     base64: ''
-    
+
   _url = ''
   _log = null
   _queue = null
@@ -51,11 +51,11 @@ class Shopifapi
       qtask = (task, callback) ->
         fetch = "#{_url}/admin/#{obj}.json?limit=250&page=#{task.page}#{argswa}"
         options = _buildOptions(fetch, 'GET')
-        _queue.add(-> 
+        _queue.add(->
           _log.may fetch
           request = req options, (err, response, result) ->
             _log.may(err) if err?
-            if response.statusCode is 500 
+            if response.statusCode is 500
               _log.may "ERROR 500. Retrying..."
               @retry 0
             else
@@ -74,7 +74,7 @@ class Shopifapi
     getData = =>
       _log.may countUrl
 
-      options = 
+      options =
         url: countUrl
         method: 'GET'
         json: true
@@ -101,15 +101,15 @@ class Shopifapi
       _log.may url
 
       req options, (err, response, result) ->
-        if response.statusCode is 500 
+        if response.statusCode is 500
           _log.may "ERROR 500. Retrying..."
           @retry 0
 
         _log.may err if err?
         _log.may result if result?
         data = null
-        if result? 
-          if obj? then data = result[obj] else data = result
+        if result?
+          if obj of result then data = result[obj] else data = result
         callback data if callback?
     )
 
