@@ -1,6 +1,6 @@
 {
   "name": "shopifapi",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "a thin wrapper for the shopify api",
   "main": "index.js",
   "scripts": {

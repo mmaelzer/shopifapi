@@ -48,12 +48,12 @@ shopify.create.product({
 
 shopify.get.product.withId(1, function(err, result) {
   console.log(result);
-  // { product: { id: 1, title: "Burton Custom Freestlye 151", ... } }
+  // { id: 1, title: "Burton Custom Freestlye 151", ... }
 });
 
 shopify.get.product.variant.withId([1, 2], function(err, result) {
   console.log(result);
-  // { variant: { option1: "First", "price": "10.00", ... } }
+  // { option1: "First", "price": "10.00", ... }
 });
 
 shopify.update.product(1, { tags: "snowboard" }, function(err, result) {
@@ -62,7 +62,7 @@ shopify.update.product(1, { tags: "snowboard" }, function(err, result) {
 
 shopify.get.products.list({ limit: 10, collection_id: 789 }, function(err, result) {
   console.log(result);
-  // { products: [ product1, product2, product3, ..., product10 ]}
+  // [ product1, product2, product3, ..., product10 ]
 });
 ```
 
@@ -118,12 +118,12 @@ var shopify = new Shopifapi({ /* options here */ });
 
 shopify.get.product.list(function(err, products) {
   console.log(products);
-  // { products: [ p1, p2, ..., pn ]}
+  // [ p1, p2, ..., pn ]
 });
 
 shopify.get.products.list(function(err, products) {
   console.log(products);
-  // { products: [ p1, p2, ..., pn ]}
+  // [ p1, p2, ..., pn ]
 });
 
 ```
@@ -146,13 +146,13 @@ var shopify = new Shopifapi({ /* options here */ });
 // 123 is the product id to get variants for
 shopify.get.product.variants.list(123, function(err, variants) {
   console.log(variants);
-  // { variants: [ v1, v2, ..., vn ]}
+  // [v1, v2, ..., vn ]
 });
 
 // 123 is the product id and 456 is the image id
 shopify.get.product.image.withId([123, 456], function(err, image) {
   console.log(image);
-  // { image: { id: 456, product_id: 123, ... }}
+  // { id: 456, product_id: 123, ... }
 });
 
 ```
@@ -167,7 +167,7 @@ Get a shopify object (product, customCollection, etc) with `id` passed in as a `
 ```javascript
 shopify.get.product.withId(123, function(err, product) {
   console.log(product);
-  // { product: { id: 123, ... }}
+  // { id: 123, ... }
 });
 ```
 
@@ -179,7 +179,7 @@ Get a shopify subobject (variant, image) with an array of ids. The order of the 
 ```javascript
 shopify.get.product.variant.withId([123, 678], function(err, variant) {
   console.log(variant);
-  // { variant: { id: 678, product_id: 123, ... }}
+  // { id: 678, product_id: 123, ... }
 });
 
 ```
@@ -192,14 +192,14 @@ Get the total count of a shopify object type like product or smartCollection. Yo
 ```javascript
 shopify.get.products.count(function(err, response) {
   console.log(response);
-  // { count: 94 }
+  // 94
 });
 
 // or
 
 shopify.get.products.count({ collection_id: 9 }, function(err, response) {
   console.log(response);
-  // { count: 23 }
+  // 23
 });
 ```
 
@@ -212,7 +212,7 @@ Get the total count of a shopify subobject type like product.variant or product.
 // Get the count of variants for product with id 123
 shopify.get.product.variants.count(123, function(err, response) {
   console.log(response);
-  // { count: 4 }
+  // 4
 });
 ```
 
@@ -224,7 +224,7 @@ Get a list of shopify objects. You can provide `options` in the form of an `Obje
 ```javascript
 shopify.get.products.list({collection_id: 9, limit: 10}, function(err, products) {
   console.log(products);
-  // { products: [p1, p2, ..., p10]}
+  // [p1, p2, ..., p10]
 });
 ```
 
@@ -236,7 +236,7 @@ Get a list of shopify subobjects like product.variants and product.images. You c
 ```javascript
 shopify.get.product.variants.list(123, {limit: 3}, function(err, products) {
   console.log(products);
-  // { variants: [v1, v2, v3]}
+  // [v1, v2, v3]
 });
 ```
 
@@ -248,7 +248,7 @@ Update a shopify object. The `id` is the id  of the object to update. The `optio
 ```javascript
 shopify.update.product(123, {title: 'New and Improved Product123'}, function(err, product) {
   console.log(product);
-  // { product: { /* udpated product data */ }}
+  // { /* udpated product data */ }
 });
 ```
 
@@ -277,7 +277,7 @@ shopify.create.product({
   ]
 }, function(err, product) {
   console.log(product);
-  // { product: { /* new product data */ }}
+  // { /* new product data */ }
 });
 ```
 
